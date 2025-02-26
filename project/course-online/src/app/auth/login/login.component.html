@@ -1,0 +1,24 @@
+
+<div class="login-container">
+    <h2>התחברות</h2>
+    
+    <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+        <p>אימייל</p>
+        <input matInput type="email" formControlName="email" required />
+   
+  
+     
+        <p>סיסמה</p>
+        <input matInput type="password" formControlName="password" required />
+      
+  
+      <button mat-raised-button color="primary" type="submit" [disabled]="loginForm.invalid">התחבר</button>
+      @if("errorMessage" != null){
+         <p  class="error-message">{{ errorMessage }}</p>
+      }
+    
+    </form>
+  
+    <p>אין לך חשבון? <a routerLink="/register">הרשם כאן</a></p>
+  </div>
+  

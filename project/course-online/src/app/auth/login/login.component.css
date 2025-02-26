@@ -1,0 +1,20 @@
+.login-container {
+    width: 300px;
+    margin: auto;
+    text-align: center;
+  }
+  
+  .full-width {
+    width: 100%;
+    margin-bottom: 16px;
+  }
+  
+  button {
+    width: 100%;
+  }
+  
+  .error-message {
+    color: red;
+    margin-top: 8px;
+  }
+  
