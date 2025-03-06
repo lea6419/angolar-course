@@ -1,0 +1,34 @@
+<form (ngSubmit)="onSubmit()" class="lesson-form">
+  <!-- שדה כותרת השיעור -->
+  <mat-form-field appearance="fill">
+    <mat-label>כותרת השיעור</mat-label>
+    <input matInput [(ngModel)]="lesson.title" name="title" required />
+    @if("lesson.title" != null){
+      <mat-error>
+        הכותרת הוא שדה חובה.
+      </mat-error>
+    }
+  </mat-form-field>
+
+  <!-- שדה תוכן השיעור -->
+  <mat-form-field appearance="fill">
+    <mat-label>תוכן השיעור</mat-label>
+    <textarea matInput [(ngModel)]="lesson.content" name="content" required></textarea>
+   @if("lesson.content" != null){
+     <mat-error>
+       התוכן הוא שדה חובה.
+     </mat-error>
+   }
+   
+  </mat-form-field>
+
+  <!-- שדה מזהה השיעור -->
+
+
+  <!-- כפתורים של שמירה ומחיקה -->
+  <div class="form-actions">
+    <button mat-raised-button color="primary" type="submit">
+      {{ isEditMode ? 'עדכן שיעור' : 'הוסף שיעור' }}
+    </button>
+  </div>
+</form>

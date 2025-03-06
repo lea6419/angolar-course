@@ -1,0 +1,52 @@
+<div class="home-container">
+  <header>
+    <h1>{{ 'ברוך הבא' | uppercase }}</h1>
+    <p>{{ today | date:'dd/MM/yyyy' }}</p>
+    <h1>ברוכים הבאים לפלטפורמת הלמידה שלנו</h1>
+    <p>לימדו, צמחו והתקדמו עם הקורסים הטובים ביותר</p>
+  </header>
+
+  <section class="features">
+    <div class="feature">
+      <h2>📚 מגוון קורסים</h2>
+      <p>למדו ממיטב המומחים בתחומים שונים, מכל מקום ובכל זמן.</p>
+    </div>
+    <div class="feature">
+      <h2>🎯 מסלולי למידה מותאמים</h2>
+      <p>בנו את הדרך שלכם להצלחה עם קורסים מותאמים אישית.</p>
+    </div>
+    <div class="feature">
+      <h2>🔒 גישה מאובטחת</h2>
+      <p>המידע שלכם מוגן עם מערכת אבטחה מתקדמת.</p>
+    </div>
+  </section>
+
+  <section class="cta">
+    
+    <button (click)="navigateToRegister()">🚀 הרשמה עכשיו</button>
+<button (click)="navigateToLogin()">🔑 כניסה</button>
+@if(isLoggedIn && userRole === 'teacher'){
+  <button  (click)="navigateToStudentDashboard()">
+  🎓 לאזור התלמידים
+</button>
+}
+@if(isLoggedIn && userRole === 'student'){
+  <button (click)="navigateToStudentDashboard()">
+   👨‍🏫  לאזור המורים
+</button>
+}
+
+
+  </section>
+
+  <section class="popular-courses">
+    <h2>🔥 קורסים פופולריים</h2>
+    <ul>
+      <!-- <li *ngFor="let course of courses">
+        <h3>{{ course.name }}</h3>
+        <p>{{ course.description }}</p>
+        <button [routerLink]="['/course', course._id]">📖 הצטרxxxxxxxxxxxxxxxxxx</button>
+      </li> -->
+    </ul>
+  </section>
+</div>

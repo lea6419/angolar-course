@@ -1,75 +1,79 @@
-.signup-container {
-    max-width: 400px;
-    margin: 50px auto;
+/* Container for the registration form */
+.register-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    background-color: #f4f7fc;
     padding: 20px;
-    background: #ffffff;
-    border-radius: 12px;
-    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
-    text-align: center;
-    font-family: Arial, sans-serif;
-}
-
-.signup-container h2 {
+    box-sizing: border-box;
+  }
+  
+  h2 {
+    margin-bottom: 30px;
+    font-size: 2rem;
     color: #333;
+  }
+  
+  /* Styling the form fields */
+  .form-field {
+    width: 100%;
+    max-width: 400px;
     margin-bottom: 20px;
-}
-
-.signup-container label {
-    display: block;
-    text-align: right;
-    font-size: 14px;
-    margin: 10px 0 5px;
-    font-weight: bold;
-    color: #555;
-}
-
-.signup-container input,
-.signup-container select {
+  }
+  
+  mat-form-field {
     width: 100%;
+  }
+  
+  /* Button Styling */
+  button {
+    width: 100%;
+    max-width: 400px;
     padding: 10px;
-    margin-bottom: 10px;
-    border: 1px solid #ccc;
-    border-radius: 6px;
-    font-size: 14px;
-    text-align: right;
-}
-
-.signup-container select {
-    cursor: pointer;
-}
-
-.signup-container input:focus,
-.signup-container select:focus {
-    border-color: #007bff;
-    outline: none;
-    box-shadow: 0px 0px 5px rgba(0, 123, 255, 0.5);
-}
-
-.signup-container div {
-    color: red;
-    font-size: 12px;
-    text-align: right;
-    margin-bottom: 10px;
-}
-
-.signup-container button {
-    width: 100%;
-    padding: 12px;
-    background: #007bff;
+    font-size: 1.1rem;
+    background-color: #1976d2;
     color: white;
-    border: none;
-    border-radius: 6px;
-    font-size: 16px;
+    border-radius: 5px;
     cursor: pointer;
-    transition: background 0.3s;
-}
-
-.signup-container button:disabled {
-    background: #ccc;
+  }
+  
+  /* Error message styling */
+  .error-message {
+    color: #d32f2f;
+    font-size: 0.9rem;
+    margin-top: 10px;
+  }
+  
+  /* Hover effect on button */
+  button:hover {
+    background-color: #1565c0;
+  }
+  
+  button:disabled {
+    background-color: #b0bec5;
     cursor: not-allowed;
-}
-
-.signup-container button:hover:not(:disabled) {
-    background: #0056b3;
-}
-
+  }
+  
+  /* Responsive design for smaller screens */
+  @media (max-width: 600px) {
+    .register-container {
+      padding: 10px;
+    }
+    
+    button {
+      font-size: 1rem;
+    }
+  }
+  
+  /* Responsive design for even smaller screens */
+  @media (max-width: 400px) {
+    .register-container {
+      padding: 5px;
+    }
+    
+    button {
+      font-size: 0.9rem;
+    }   
+  }  

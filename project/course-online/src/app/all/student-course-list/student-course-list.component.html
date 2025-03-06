@@ -1,0 +1,48 @@
+<div class="courses-container">
+  <h2>📚 רשימת קורסים</h2>
+  
+ 
+  <!-- הודעה על הצלחה -->
+   @if(message){
+      <div class="message-box">
+    {{ message }}
+  </div>
+   }
+ 
+
+  <table class="courses-table">
+    <thead>
+      <tr>
+        <th>#</th>
+        <th>כותרת הקורס</th>
+        <th>תיאור</th>
+        <th>שיעורים</th>
+        <th>פעולות</th>
+      </tr>
+    </thead>
+    <tbody>
+      @for (course of courses; track course.id) { 
+      <tr>
+        <td>{{ course.id }}</td>  
+        <td>{{ course.title }}</td>
+        <td>{{ course.description }}</td>
+        <td>
+          <ul>
+            @for (lesson of course.lessons; track lesson.id) {
+              <li>{{ lesson.title }}</li>
+            }  
+          </ul>
+        </td>
+        <td>
+          <button class="enroll-btn" (click)="enrollInCourse(course.id)">
+            ➕ הוסף לקורסים שלי
+          </button>
+          <button class="leave-btn" (click)="leaveCourse(course.id)">
+            ❌ עזוב קורס
+          </button>
+        </td> 
+      </tr>
+      }
+    </tbody>
+  </table>
+</div>

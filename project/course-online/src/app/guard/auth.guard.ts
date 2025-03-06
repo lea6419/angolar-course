@@ -9,7 +9,7 @@ export const roleGuard: CanActivateFn = (route, state) => {
   const userRole = authService.getUserRole(); // שליפת תפקיד המשתמש
   const requiredRoles = route.data?.['roles'] as string[]; // הרשאות נדרשות לנתיב
 
-  if (authService.isLoggedIn() && requiredRoles.includes(userRole)) {
+  if (authService.isLoggedIn() && requiredRoles.includes(userRole!)) {
     return true; // המשתמש מחובר ויש לו הרשאה
   } else {
     router.navigate(['/unauthorized']); // דף גישה חסומה

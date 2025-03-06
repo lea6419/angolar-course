@@ -1,0 +1,69 @@
+.home-container {
+    text-align: center;
+    padding: 20px;
+  }
+  
+  header h1 {
+    font-size: 2.5rem;
+    color: #2c3e50;
+  }
+  
+  header p {
+    font-size: 1.2rem;
+    color: #7f8c8d;
+  }
+  
+  .features {
+    display: flex;
+    justify-content: space-around;
+    margin: 20px 0;
+  }
+  
+  .feature {
+    background: #ecf0f1;
+    padding: 15px;
+    border-radius: 10px;
+    width: 30%;
+    text-align: center;
+  }
+  
+  .cta button {
+    margin: 10px;
+    padding: 10px 20px;
+    font-size: 1.2rem;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+  }
+  
+  .cta button:first-child {
+    background: #27ae60;
+    color: white;
+  }
+  
+  .cta button:last-child {
+    background: #2980b9;
+    color: white;
+  }
+  
+  .popular-courses ul {
+    list-style-type: none;
+    padding: 0;
+  }
+  
+  .popular-courses li {
+    background: #f4f4f4;
+    margin: 10px 0;
+    padding: 15px;
+    border-radius: 8px;
+  }
+  
+  .popular-courses button {
+    background: #e74c3c;
+    color: white;
+    border: none;
+    padding: 8px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  

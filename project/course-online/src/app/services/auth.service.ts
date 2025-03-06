@@ -1,26 +1,52 @@
 
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { Observable, tap } from 'rxjs';
+import { log } from 'console';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
   private baseUrl = 'http://localhost:3000/api/auth';
-
+  private id: number | null = null;
   constructor(private http: HttpClient) {}
 
 
-  login(data: {  email: string; password:string}): Observable<any> {
-    return this.http.post(`${this.baseUrl}/login`, data);
+  login(data: { email: string; password: string }): Observable<any> {
+    return this.http.post(`${this.baseUrl}/login`, data).pipe(
+      tap((response: any) => {
+        this.id = response.id;
+        this.saveToken(response.token);
+        this.saveUserRole(response.role); // שמירת ה-Role
+        this.id = response.userId;
+        console.log(response);
+      })
+    );
   }
+  
+  private saveUserRole(role: string) {
+    localStorage.setItem('role', role);
+  }
+  
   register(data: { name: string; email: string; password: string,role:string }): Observable<any> {
     
-    return  this.http.post(`${this.baseUrl}/register`, data);
-   
+    return this.http.post(`${this.baseUrl}/register`, data).pipe(
+      tap((response: any) => {
+        this.id = response.id;
+        this.saveToken(response.token);
+        this.saveUserRole(response.role); // שמירת ה-Role
+        this.id = response.userId;
+        console.log(response);
+        
+      })
+    );
+    
   }
-
+  getUserRole(): string | null {
+    return localStorage.getItem('role');
+  }
+  
   // פונקציה לשמירת טוקן
   saveToken(token: string) {
     sessionStorage.setItem('token', token);
@@ -38,6 +64,13 @@ export class AuthService {
 
   logout() {
     sessionStorage.removeItem('token');
+    localStorage.removeItem('role'); // הסרת ה-Role
+  }
+  
+
+
+  getId(): number | null {
+    return this.id;
   }
 
   // קבלת כל השיעורים בקורס מסוים

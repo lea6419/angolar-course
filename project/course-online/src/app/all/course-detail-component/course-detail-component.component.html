@@ -1,0 +1,18 @@
+<h2>פרטי הקורס</h2>
+@if(course!=null){
+      <h3>{{ course.name }}</h3>
+  <p>{{ course.description }}</p>
+<h3>שיעורים בקורס</h3>
+<ul>
+  @for (lesson of lessons; track lesson._id) {
+    <li>
+      <h4>{{ lesson.title }}</h4>
+      <p>{{ lesson.content }}</p>
+    </li>
+  }
+</ul>
+
+}
+
+
+

@@ -1,0 +1,48 @@
+<!-- <form (ngSubmit)="onSubmit()">
+  <label for="title">כותרת:</label>
+  <input id="title" [(ngModel)]="course.title" name="title" required />
+
+  <label for="description">תיאור:</label>
+  <input id="description" [(ngModel)]="course.description" name="description" required />
+
+  <label for="teacherId">מזהה מורה:</label>
+  <input id="teacherId" [(ngModel)]="course.teacherId" name="teacherId" required />
+
+  <button type="submit">{{ isEditMode ? 'עדכן קורס' : 'הוסף קורס' }}</button>
+  <button type="button" (click)="onDelete()" *ngIf="isEditMode">מחק קורס</button>
+</form> -->
+<form (ngSubmit)="onSubmit()" class="lesson-form">
+  <!-- שדה כותרת השיעור -->
+  <mat-form-field appearance="fill">
+    <mat-label>כותרת </mat-label>
+    <input matInput [(ngModel)]="course.title" name="title" required />
+    <mat-error *ngIf="!lesson.title">
+      הכותרת היא שדה חובה.
+    </mat-error>
+  </mat-form-field>
+
+  <!-- שדה תוכן השיעור -->
+  <mat-form-field appearance="fill">
+    <mat-label>תוכן </mat-label>
+    <textarea matInput [(ngModel)]="course.description" name="description" required></textarea>
+   @if("lesson.content" != null){
+     <mat-error>
+       התוכן הוא שדה חובה.
+     </mat-error>
+   }
+   
+  </mat-form-field>
+
+  <!-- שדה מזהה השיעור -->
+
+
+  <!-- כפתורים של שמירה ומחיקה -->
+  <div class="form-actions">
+    <button type="submit">{{ isEditMode ? 'עדכן קורס' : 'הוסף קורס' }}</button>
+    @if(isEditMode){
+      <button type="button" (click)="onDelete()">מחק קורס</button>
+    }
+   
+  </div>
+</form>
+
