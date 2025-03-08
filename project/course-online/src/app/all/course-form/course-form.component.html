@@ -16,9 +16,11 @@
   <mat-form-field appearance="fill">
     <mat-label>כותרת </mat-label>
     <input matInput [(ngModel)]="course.title" name="title" required />
-    <mat-error *ngIf="!lesson.title">
-      הכותרת היא שדה חובה.
-    </mat-error>
+    @if("lesson.title" != null){
+      <mat-error>
+        הכותרת הוא שדה חובה.
+      </mat-error>
+    }
   </mat-form-field>
 
   <!-- שדה תוכן השיעור -->

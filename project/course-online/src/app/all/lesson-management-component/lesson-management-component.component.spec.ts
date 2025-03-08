@@ -1,85 +1,75 @@
-import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { Component, EventEmitter, Input, OnInit } from '@angular/core';
 import { CourseService } from '../../services/course.service';
+import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { MatButtonModule } from '@angular/material/button';
 import { MatTableModule } from '@angular/material/table';
 import { MatIconModule } from '@angular/material/icon';
-import { MatDialogModule } from '@angular/material/dialog';
+import { Router } from '@angular/router';
+import { RouterModule } from '@angular/router';
 @Component({
   selector: 'app-lesson-management-component',
   standalone: true,
-  imports: [   MatButtonModule,
+  imports: [
+    MatButtonModule,
     MatTableModule,
     MatIconModule,
-    MatDialogModule],
+    MatDialogModule,RouterModule],
   templateUrl: './lesson-management-component.component.html',
   styleUrl: './lesson-management-component.component.css'
 })
-export class CourseManagementComponent implements OnInit {
-addLesson() {
-
-}
-  courses: any;
-  lessons: any;
-  coursId:string | null | undefined;
-
- 
- 
-
+export class LessonManagementComponentComponent implements OnInit {
   constructor(private courseService: CourseService, private router: Router) {}
-  ngOnInit(): void {
-    this.coursId=this.router.
-    this.loadLesson();
-  }
+  @Input() courseId: string ='';
+  lessons: any[] = [];
 
-  loadLesson() {
-    this.courseService.getLessons(this.coursId).subscribe({
-      next: (data) => (this.courses = data),
-      error: (err) => console.error('שגיאה בטעינת הקורסים', err)
-    });
-  }
-  navigateToAddCourse(): void {
-    this.router.navigate(['/course-form']);
+
+  ngOnInit(): void {
+    this.loadLessons();
   }
   
-  deleteCourse(courseId: string) {
-    console.log('מוחקת קורס עם ID:', courseId);
-    if (confirm('האם אתה בטוח שברצונך למחוק את הקורס?')) {
-      this.courseService.deleteCourse(courseId).subscribe(() => {
-        console.log('הקורס נמחק בהצלחה');
-        this.loadCourses(); // רענון לאחר מחיקה
-      }, (error) => {
-        console.error('שגיאה במחיקת הקורס:', error);
-      });
+  addLesson() {
+    this.router.navigate(['/lesson-form', this.courseId]);
+    console.log( this.courseId);
+  }
+  editLesson(lessonId: string, courseId: string) {
+    console.log(lessonId, "ls", courseId);
+    
+    if (lessonId && courseId) {
+      this.router.navigate(['/lesson-form', courseId, lessonId]);
+    } else {
+      console.error('שיעור לא נמצא');
     }
   }
-  selectedCourseId: string | null = null;
-  editCourse(courseId: string) {
-    this.router.navigate(['/course-form', courseId]);
+  
+  
+  
+ 
+
+  loadLessons() {
+    this.courseService.getLessons(this.courseId).subscribe({
+      next: (data) => {
+        this.lessons = data;
+        console.log('שיעורים שהתקבלו:', this.lessons);
+      },
+      error: (err) => console.error('שגיאה בטעינת השיעורים', err)
+    });
   }
-  toggleLessons(courseId: string) {
-    this.selectedCourseId = this.selectedCourseId === courseId ? null : courseId;
-    this.fetchLessons(courseId);
+  
+
+  deleteLesson(lessonId: string, courseId: string) {
+    if (lessonId && confirm('האם אתה בטוח שברצונך למחוק את השיעור?')) {
+      this.courseService.deleteLesson(courseId, lessonId).subscribe({
+        next: () => {
+          console.log("שיעור נמחק בהצלחה");
+          this.loadLessons();  // טוען את השיעורים מחדש לאחר המחיקה
+        },
+        error: (err) => console.error('שגיאה במחיקת שיעור', err)
+      });
+    } else {
+      console.error('לא נמצא ID של שיעור');
+    }
   }
-
-  fetchLessons(courseId: string) {
-    // הדמיית שליפת שיעורים מהשרת
-    this.lessons = this.courseService.getLessons(courseId);
-    
-    
-  }
-
-  editLesson(lessonId: string) {
-    this.router.navigate(['/ManagementLessons', lessonId]);
-    console.log('עריכת שיעור', lessonId);
-  }
-
-  deleteLesson(lessonId: string) {
-    console.log('מחיקת שיעור', lessonId);
-  }
-
-
-
-
+  
 }
+
 
