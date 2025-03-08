@@ -2,6 +2,17 @@
   <header>
     <h1>{{ 'ברוך הבא' | uppercase }}</h1>
     <p>{{ today | date:'dd/MM/yyyy' }}</p>
+    <p>{{ isLoggedIn | status }}</p>
+    <div>
+      @if(isLoggedIn){
+        <p [appShowIfLoggedIn]="isLoggedIn">מחובר</p>
+
+      }
+      @else{
+        <p [appShowIfLoggedIn]="isLoggedIn">מחובר לא</p>
+
+      }
+    </div>
     <h1>ברוכים הבאים לפלטפורמת הלמידה שלנו</h1>
     <p>לימדו, צמחו והתקדמו עם הקורסים הטובים ביותר</p>
   </header>
@@ -27,12 +38,12 @@
 <button (click)="navigateToLogin()">🔑 כניסה</button>
 @if(isLoggedIn && userRole === 'teacher'){
   <button  (click)="navigateToStudentDashboard()">
-  🎓 לאזור התלמידים
+  👨‍🏫 לאזור המורים
 </button>
 }
 @if(isLoggedIn && userRole === 'student'){
   <button (click)="navigateToStudentDashboard()">
-   👨‍🏫  לאזור המורים
+    🎓  לאזור התלמידים
 </button>
 }
 

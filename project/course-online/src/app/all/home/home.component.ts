@@ -3,11 +3,13 @@ import { CourseService } from '../../services/course.service';
 import { Router, RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { AuthService } from '../../services/auth.service';
+import { ShowIfLoggedInDirective } from '../../directive/show-if-logged-in.directive';
+import { StatusPipe } from "../../app/pipes/status.pipe";
 
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [RouterModule,CommonModule],
+  imports: [RouterModule, CommonModule, ShowIfLoggedInDirective, StatusPipe],
   templateUrl: './home.component.html',
   styleUrl: './home.component.css'
 })
